@@ -35,8 +35,14 @@
   background-color: #f00
 }
 .dropdown-parent:hover .hidden  li{
-  border: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-left: 1px solid #ccc;
   font-size: 14px;
   padding: 10px;
 
+}
+
+.dropdown-parent .hidden  li:hover{
+  background-color: #eee;
 }
