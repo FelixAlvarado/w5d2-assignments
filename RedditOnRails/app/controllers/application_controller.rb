@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
   end
 
   def require_logout
-    redirect_to user_url(current_user) if logged_in?
+    if logged_in?
+      redirect_to user_url(current_user)
+      true
+    end
   end
-  
+
+
 end

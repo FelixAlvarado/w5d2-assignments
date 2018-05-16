@@ -9,7 +9,7 @@
   </head>
 
   <% if logged_in? %>
-  <header> Welcome, <%=current_user.username%> </header>
+  <header> <h2>Welcome, <%=current_user.username%> </h2></header>
   <form action="<%=session_url%>" method="post">
     <input type="hidden" name="_method" value="delete">
     <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">

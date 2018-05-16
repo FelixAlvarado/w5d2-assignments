@@ -1,5 +1,6 @@
 class SubsController < ApplicationController
 
+  before_action :moderator?, only: [:edit,:update]
   def new
     unless current_user
       require_login
@@ -22,13 +23,15 @@ class SubsController < ApplicationController
   end
 
   def edit
-    @sub = Sub.new
+    @sub = Sub.find(params[:id])
+
     render :edit
   end
 
   def update
-    @sub = Sub.find_by(params[:id])
-    if @sub.update(sub_params)
+    @sub = Sub.find(params[:id])
+
+    if @sub.update_attributes(sub_params)
       redirect_to sub_url(@sub)
     else
       flash.now[:errors] = @sub.errors.full_messages
@@ -37,6 +40,9 @@ class SubsController < ApplicationController
   end
 
   def show
+    @sub = Sub.find(params[:id])
+
+    render :show
   end
 
   def index
@@ -50,7 +56,9 @@ class SubsController < ApplicationController
     params.require(:sub).permit(:title, :description)
   end
 
-  def require_moderator(sub)
-    redirect_to sub_url(sub)
+  def moderator?
+    sub = Sub.find(params[:id])
+    redirect_to sub_url(sub) unless current_user.id == sub.moderator_id
   end
+
 end

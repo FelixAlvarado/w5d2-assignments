@@ -1,0 +1,7 @@
+<ul>
+  <h3> Moderated Subs</h3>
+<%@user.moderated_subs.each do |sub|%>
+<li><a href="<%=sub_url(sub)%>"><%=sub.title%></a></li>
+<%end%>
+</ul>
+<a href="<%=subs_url%>">Go to Subs</a>

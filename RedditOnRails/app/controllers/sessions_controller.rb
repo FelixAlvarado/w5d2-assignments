@@ -2,10 +2,7 @@ class SessionsController < ApplicationController
 
 
   def new
-    if current_user
-      require_logout
-      return
-    end
+    return if require_logout
 
     @user = User.new
     render :new
